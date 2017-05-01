@@ -18,6 +18,5 @@
   },
   "homepage": "https://github.com/aseiden/geneticGroups#readme",
   "dependencies": {
-    "tabletop": "^1.5.2"
   }
 }

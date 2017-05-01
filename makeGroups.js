@@ -25,3 +25,16 @@
   // Repeat until generation count is met
 
 // Print the most fit combination and associated fitness score to console
+
+var data = require('./preferenceData');
+
+const generationCount = 200;
+const cullRate = .1;
+const genePoolSize = 100;
+const mutationRate = .01;
+const affinityBonus = 1;
+const techRefusal = -3;
+const personalRefusal = -5;
+const wrongSizePentaltyBase = -5;
+
+
