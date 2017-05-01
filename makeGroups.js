@@ -26,7 +26,7 @@
 
 // Print the most fit combination and associated fitness score to console
 
-const data = require('./preferenceData');
+const preferences = require('./preferenceData');
 
 const generationCount = 200;
 const cullRate = .1;
@@ -43,12 +43,12 @@ const phraseToRateTable = {
   'I would refuse to work with this person, due to OUR INTERPERSONAL ISSUES': personalRefusal
 };
 
-const cleanData = (data) => {
-  var cleanData = {};
+const cleanPreferences = (preferences) => {
+  let cleanedPreferences = {};
 
-  cleanData = data.map((person) => {
-    var cleanEntry = {name: person['yourName'], relationships: {}};
-    for (var key in person) {
+  cleanedPreferences = preferences.map((person) => {
+    let cleanEntry = {name: person['yourName'], relationships: {}};
+    for (let key in person) {
       if (key !== 'timestamp' && key !== 'yourName' && key !== cleanEntry.name) {
         cleanEntry.relationships[key] = phraseToRateTable[person[key]];
       }
@@ -56,7 +56,7 @@ const cleanData = (data) => {
     return cleanEntry;
   });
 
-  return cleanData;
+  return cleanedPreferences;
 };
 
-console.log(cleanData(data));
+console.log(cleanPreferences(preferences));
