@@ -93,4 +93,14 @@ const makeRandomGenome = (people) => {
   return genome;
 };
 
+const makeInitialGenePool = (size, people) => {
+  let genePool = [];
+  
+  for (var i = 0; i < size; i++) {
+    genePool.push(makeRandomGenome(people));
+  }
 
+  return genePool;
+};
+
+console.log(makeInitialGenePool(genePoolSize, people));
