@@ -59,4 +59,38 @@ const cleanPreferences = (preferences) => {
   return cleanedPreferences;
 };
 
-console.log(cleanPreferences(preferences));
+const cleanedPreferences = cleanPreferences(preferences);
+
+const makePeopleList = (preferences) => {
+  return preferences.map((person) => {
+    return person.yourName;
+  });
+};
+
+const people = makePeopleList(preferences);
+
+const makeRandomGenome = (people) => {
+  let peopleCopy = people.map((person) => { return person; });
+  let currentGroup = 0;
+  let genome = [{name: currentGroup, members: []}];
+  let randomIndex = 0;
+  let person = '';
+
+  while (peopleCopy.length > 0) {
+    randomIndex = Math.floor(Math.random() * peopleCopy.length);
+    person = peopleCopy[randomIndex];
+    peopleCopy.splice(randomIndex, 1);
+
+    if (genome[currentGroup].members.length < 4) {
+      genome[currentGroup].members.push(person);
+    } else {
+      currentGroup++;
+      genome[currentGroup] = {name: currentGroup, members: []};
+      genome[currentGroup].members.push(person);
+    }
+  }
+
+  return genome;
+};
+
+
