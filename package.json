@@ -1,0 +1,23 @@
+{
+  "name": "genetic-groups",
+  "version": "1.0.0",
+  "description": "Genetic algorithm to create Hack Reactor project groups based on individual preferences.",
+  "main": "makeGroups.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node makeGroups.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aseiden/geneticGroups.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aseiden/geneticGroups/issues"
+  },
+  "homepage": "https://github.com/aseiden/geneticGroups#readme",
+  "dependencies": {
+    "tabletop": "^1.5.2"
+  }
+}
