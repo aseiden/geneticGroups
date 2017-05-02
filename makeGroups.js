@@ -119,4 +119,29 @@ const getFitness = (genome, preferences) => {
   return fitness;
 };
 
-console.log(getFitness(makeRandomGenome(people), cleanedPreferences));
+const stackOrderByFitness = (genePool, preferences) => {
+  let genomeWithFitness;
+
+  let genePoolWithFitness = genePool.map((genome) => {
+    genomeWithFitness = {};
+    genomeWithFitness.pool = genome;
+    genomeWithFitness.fitness = getFitness(genome, preferences);
+    return genomeWithFitness;
+  });
+
+  genePoolWithFitness.sort((a, b) => {
+    if (a.fitness > b.fitness) {
+      return -1;
+    }
+
+    if (a.fitness < b.fitness) {
+      return 1;
+    }
+
+    return 0;
+  });
+
+  return genePoolWithFitness;
+};
+
+console.log(stackOrderByFitness(makeInitialGenePool(10, people), cleanedPreferences));
