@@ -149,6 +149,24 @@ const cullTheHerd = (genePool, cullRate) => {
   return genePool.slice(0, survivors);
 };
 
-console.log(cullTheHerd(stackOrderByFitness(makeInitialGenePool(10, people), cleanedPreferences), cullRate));
+let test = cullTheHerd(stackOrderByFitness(makeInitialGenePool(10, people), cleanedPreferences), cullRate);
 
+const prepareForBreeding = (genome) => {
+  let unSpooledGenome = genome.pool.map((group) => {
+    return group.members.map((member) => {
+      return {group: group. name, name: member};
+    });
+  });
 
+  let flattenedUnSpooledGenome = [];
+  
+  unSpooledGenome.forEach((arr) => {
+    arr.forEach((member) => {
+      return flattenedUnSpooledGenome.push(member);
+    });
+  });
+
+  return flattenedUnSpooledGenome;
+};
+
+prepareForBreeding(test[0]);
