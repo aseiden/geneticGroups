@@ -144,4 +144,11 @@ const stackOrderByFitness = (genePool, preferences) => {
   return genePoolWithFitness;
 };
 
-console.log(stackOrderByFitness(makeInitialGenePool(10, people), cleanedPreferences));
+const cullTheHerd = (genePool, cullRate) => {
+  const survivors = Math.floor(genePool.length * (1 - cullRate));
+  return genePool.slice(0, survivors);
+};
+
+console.log(cullTheHerd(stackOrderByFitness(makeInitialGenePool(10, people), cleanedPreferences), cullRate));
+
+
