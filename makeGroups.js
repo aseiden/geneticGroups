@@ -46,14 +46,14 @@ const phraseToRateTable = {
 const cleanPreferences = (preferences) => {
   let cleanedPreferences = {};
 
-  cleanedPreferences = preferences.map((person) => {
-    let cleanEntry = {name: person['yourName'], relationships: {}};
+  preferences.forEach((person) => {
+    let relationships = {};
     for (let key in person) {
-      if (key !== 'timestamp' && key !== 'yourName' && key !== cleanEntry.name) {
-        cleanEntry.relationships[key] = phraseToRateTable[person[key]];
+      if (key !== 'timestamp' && key !== 'yourName' && key !== person.yourName) {
+        relationships[key] = phraseToRateTable[person[key]];
       }
     }
-    return cleanEntry;
+    cleanedPreferences[person.yourName] = relationships;
   });
 
   return cleanedPreferences;
@@ -103,4 +103,20 @@ const makeInitialGenePool = (size, people) => {
   return genePool;
 };
 
-console.log(makeInitialGenePool(genePoolSize, people));
+const getFitness = (genome, preferences) => {
+  let fitness = 0;
+
+  genome.forEach((group) => {
+    group.members.forEach((member) => {
+      group.members.forEach((relation) => {
+        if (preferences[member][relation] !== undefined) {
+          fitness += preferences[member][relation];
+        }
+      });
+    });
+  });
+
+  return fitness;
+};
+
+console.log(getFitness(makeRandomGenome(people), cleanedPreferences));
